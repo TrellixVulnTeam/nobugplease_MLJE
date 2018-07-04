@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <form enctype=multipart/form-data method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <input type="file" style="border-radius: 10%" name="file">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+</div>
+
+
+{% endblock %}

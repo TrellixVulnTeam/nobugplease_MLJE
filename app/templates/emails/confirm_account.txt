@@ -1,0 +1,9 @@
+Hello {{username}},
+
+Thank you for signing up an account at Nobugplease.com!
+
+To confirm your account, please click on the following link, or copy and paste into your browser:
+{{ url_for('page.confirm_account', token=token, _external=True) }}
+
+Best Regards ,
+Hoang

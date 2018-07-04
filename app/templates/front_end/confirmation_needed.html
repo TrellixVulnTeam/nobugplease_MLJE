@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Confirmation Needed {% endblock %}
+
+{% block body %}
+
+<div class="container" id="authentication-notification">
+    {% if session.get('language') == 'vie' %}
+         <p>
+        Xin chào <strong>{{current_user.username}}</strong>, trước khi bạn có thể đăng một bài viết mới,
+             Bạn phải xác nhận tài khoản của bạn trước.
+        Xin hãy kiểm tra hòm thư của bạn để tìm link xác nhận tài khoản.
+        </p>
+        <br>
+        <p> Nếu bạn cần một email xác nhận mới hoặc bạn muốn đổi email liên kết với tài khoản của bạn,
+            xin hãy <a href="{{url_for('page.resend_email')}}">bấm vào đây</a>.
+        </p>
+
+    {% else %}
+        <p>
+        Hello <strong>{{current_user.username}}</strong>, before you can add a new post, you have to confirm your account first.
+        Please check your email inbox for the confirmation link.
+        </p>
+        <br>
+        <p> If you want to change your associated email address or another confirmation email,
+            please <a href="{{url_for('page.resend_email')}}">click here</a>.
+        </p>
+    {% endif %}
+</div>
+
+{% endblock %}

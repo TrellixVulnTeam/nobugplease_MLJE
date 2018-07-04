@@ -1,0 +1,18 @@
+<html>
+    <h1> Welcome New User! </h1>
+    <p> Hello <strong>{{username}}</strong>, </p>
+    <p>
+        Thank you for signing up an account at Nobugplease.com! <br>
+        <p>
+        To confirm your account, please
+        <a href="{{url_for('page.confirm_account', token=token, _external=True)}}">Click Here</a>
+        , or paste the following link into your browser: <br>
+        {{url_for('page.confirm_account', token=token, _external=True)}}
+        <p>
+    </p>
+
+    <p>
+        Best Regards, <br>
+        Hoang
+    </p>
+</html>

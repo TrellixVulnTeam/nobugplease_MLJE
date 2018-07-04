@@ -1,0 +1,387 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+a {
+    text-decoration: none;
+    font-family: Calibri, Helvetica, sans-serif;
+    color: #555;
+}
+
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}
+
+a:active {
+    color: orange;
+}
+
+.clr {
+    clear: both;
+}
+
+.align-center {
+    text-align: center;
+}
+
+h2 {
+    padding: 0;
+    font-family: Calibri, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+body{
+    background-color: paleturquoise;
+	color:#555;
+	font-family:Calibri, Helvetica, sans-serif;
+	font-size:18px;
+	line-height:1.6em;
+	margin:0;
+    padding: 0;
+}
+
+.main-container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0;
+}
+
+#main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+    font-size: 14px;
+    padding: 5px 20px;
+    margin:0;
+}
+
+#fb-icon {
+    text-align: left;
+    display: inline;
+}
+
+#fb-icon a {
+    color: white;
+    font-size: 20px;
+}
+
+#fb-icon a:hover {
+    color: orange;
+}
+
+#top-left-header {
+    list-style: none;
+    display: inline;
+    padding-left: 0;
+}
+
+#top-left-header li {
+    list-style: none;
+    display: inline;
+    padding-right: 10px;
+}
+
+.flag-icon {
+    /*float: right;*/
+}
+
+.language-icon {
+    display: inline;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#email-section {
+    display: inline;
+    float: right;
+    margin-right: 2.6%;
+}
+
+#email-line {
+    font-family: Arial, sans-serif;
+}
+
+#email-icon {
+    display: none;
+    font-size: 20px;
+}
+
+#account-icon, #settings-icon {
+    color: white;
+    display: none;
+    font-size: 20px;
+}
+
+#account-icon:hover, #settings-icon:hover {
+    color: orange;
+}
+
+#account-icon:active, #settings-icon:active {
+    color: orange;
+}
+
+#settings-icon {
+    margin-left: 10px;
+    display: inline;
+}
+
+#email-section a {
+    color: white;
+}
+
+#email-section a:hover {
+    color: orange;
+}
+
+
+.main-logo, .main-logo-home {
+    padding-top: 25px;
+    text-align: center;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.main-logo-home {
+    width: 220px;
+    height: 220px;
+}
+
+#main-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#main-title {
+    font-family: Calibri, sans-serif;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#main-title a:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+#description-section {
+    text-align: center;
+    margin: 10px auto 50px auto;
+    max-width: 450px;
+}
+
+#description-section h1 a:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+.content-column {
+    float: left;
+    width: 33.3%;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+#middle-column {
+    border-right: black 1px solid;
+    border-left: black 1px solid;
+}
+
+#last-column {
+    border: none;
+}
+
+.content-column ul {
+    margin-top: 10px;
+    list-style: none;
+    text-align: center;
+    /*padding-left: 20px;*/
+}
+
+.content-column h3 {
+    font-size: 24px;
+    text-align: center;
+}
+
+#main-footer, #main-footer a {
+    background-color: black;
+    text-align: center;
+    color: white;
+    height: auto;
+    padding-top: 3px;
+    margin-top: 100px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+#main-footer a:hover {
+    color: orange;
+}
+
+#copy-right {
+    font-size: 14px;
+}
+
+
+/*Login, signup*/
+#login, #comment-toolbar {
+    list-style: none;
+    margin-top: 3%;
+}
+
+#login li, #comment-toolbar li {
+    display: inline;
+    padding-left: 0;
+    float: right;
+    font-size: 16.5px;
+    margin-right: 12px;
+}
+
+#login-button a:hover {
+    text-decoration: underline;
+    color: #555;
+}
+
+#greeting-message, #login-button {
+    padding-top: 5px;
+}
+
+
+/*Article Page*/
+.container, .comment-container {
+    max-width: 690px;
+    margin:auto;
+    border-right: 1px lightblue solid;
+    border-left: 1px lightblue solid;
+    padding: 20px;
+    color: #555;
+}
+
+.comment-container {
+    border-top: lightblue 1px solid;
+}
+
+
+
+/*Utilities*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #292525;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    min-width: 90px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-language {
+    display: none;
+    position: absolute;
+    background-color: #292525;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    min-width: 30px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 12px 10px;
+    padding-bottom: 6px;
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-language {
+    display: block;
+}
+
+#settings-dropdown {
+    min-width: 160px;
+}
+
+@media (max-width: 1400px) {
+    #login {
+        margin-top: 4%;
+    }
+}
+
+@media (max-width: 1024px) {
+    #email-section {
+        margin-right: 4.5%;
+    }
+
+    #login {
+        margin-top: 5.5%;
+    }
+}
+
+@media (max-width: 780px) {
+
+    .content-column {
+        width: 100%;
+        float: none;
+        border-bottom: black 1px solid;
+        padding-bottom: 10px;
+    }
+
+    #middle-column {
+        border-right: none;
+        border-left: none;
+    }
+
+    .main-logo {
+        padding-top: 35px;
+    }
+
+    #last-column {
+        border-bottom: none;
+    }
+
+    #email-line {
+        display: none;
+    }
+
+    #email-icon {
+        display: inline;
+    }
+
+    #email-section {
+        margin-right: 8%;
+    }
+
+    #account-icon {
+        display: inline;
+    }
+
+    #login {
+        display: none;
+    }
+
+    .clr {
+        margin-bottom: 9%;
+    }
+
+
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Edit Post {% endblock %}
+
+{% block body %}
+
+     <div class="container">
+         <div class="main-logo" style="margin-bottom: 50px">
+             <a href="#"> <h1 id="main-title">
+                 {% if session.get('language') == 'vie' %}
+                 Chỉnh sửa Bài viết
+                 {% else %}
+                 Edit Post
+                 {% endif %}
+             </h1> </a>
+             <a href="#"> <img id="main-pic" src={{url_for('static', filename='images/random.png')}}> </a>
+
+         </div>
+
+         <br>
+
+         <div class="form">
+             {{wtf.quick_form(form, button_map={'submit':'success'})}}
+         </div>
+     </div>
+
+
+{% endblock %}

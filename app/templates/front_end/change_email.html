@@ -1,0 +1,19 @@
+{% extends "base_with_shortcut.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Change Email {% endblock %}
+
+{% block body %}
+
+ <div class="container">
+         <div class="main-logo" style="margin-bottom: 50px">
+             <a href="{{url_for('page.home')}}"> <h2 style="margin-bottom: 10px">Change Recovery Email Address</h2> </a>
+             <a href="{{url_for('page.home')}}"> <img src={{url_for('static', filename='images/random.png')}}> </a>
+         </div>
+
+    <div class="login-form">
+        {{wtf.quick_form(form, button_map={'submit':'success'})}}
+    </div>
+</div>
+
+{% endblock %}

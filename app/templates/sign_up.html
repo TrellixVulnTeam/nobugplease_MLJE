@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Sign Up {% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="main-logo" style="margin-bottom: 50px">
+             <a href="#"> <h1 id="main-title">{% if session.get('language') == 'vie' %} Đăng ký {% else %} Sign Up {% endif %}</h1> </a>
+             <a href="#"> <img src={{url_for('static', filename='images/random.png')}}> </a>
+         </div>
+
+         <div class="login-form">
+             {{wtf.quick_form(form, button_map={'submit':'success'})}}
+             <div id="login-help-section">
+                 <a href="{{url_for('page.reset_password')}}" class="login-help">
+                     {% if session.get('language') == 'vie' %}
+                        Quên mật khẩu?
+                     {% else %}
+                        Forget password?
+                     {% endif %}
+                 </a> <br>
+
+                 <a href="{{url_for('page.page_login')}}" class="login-help">
+                     {% if session.get('language') == 'vie' %}
+                        Đã có tài khoản?
+                     {% else %}
+                        Already have an account?
+                     {% endif %}
+                 </a>
+             </div>
+         </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Add Post {% endblock %}
+
+{% block body %}
+
+     <div class="container">
+         <div class="main-logo" style="margin-bottom: 50px">
+             <a href="#"> <h1 id="main-title">
+                 {% if session.get('language') == 'vie' %}
+                 Thêm Bài Viết
+                 {% else %}
+                 Adding New Post
+                 {% endif %}
+             </h1> </a>
+             <a href="#"> <img id="main-pic" src={{url_for('static', filename='images/random.png')}}> </a>
+         </div>
+         <br>
+         {% if session.get('language') == 'vie' %}
+         <p> Chú ý: Để trống những ô tiếng Anh nếu bạn chỉ muốn post bài bằng tiếng Việt.  </p>
+         {% else %}
+         <p> Note: Leave Vietnamese fields blank if you only know English. </p>
+         {% endif %}
+         <br>
+
+         <div class="form">
+             {{wtf.quick_form(form, button_map={'submit':'success'})}}
+         </div>
+     </div>
+
+
+{% endblock %}

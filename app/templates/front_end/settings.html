@@ -1,0 +1,18 @@
+{% extends "base_with_shortcut.html" %}
+
+{% block title %} Account Settings {% endblock %}
+
+{% block body %}
+
+ <div class="container" style="margin-bottom: 15%;">
+         <div class="main-logo" style="margin-bottom: 50px">
+             <a href="{{url_for('page.home')}}"> <h2 style="margin-bottom: 10px">Account Settings</h2> </a>
+             <a href="{{url_for('page.home')}}"> <img src={{url_for('static', filename='images/random.png')}}> </a>
+         </div>
+     <ul>
+         <li><a href="{{url_for('page.change_password')}}"> Change Password </a></li>
+         <li><a href="{{url_for('page.change_email')}}"> Change Recovery Email Address</a></li>
+     </ul>
+</div>
+
+{% endblock %}

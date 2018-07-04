@@ -1,0 +1,53 @@
+{% extends "base_with_shortcut.html" %}
+
+{% block title %} Users Monitor {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 align="center" style="margin-bottom: 10%;"> Monitor Users </h1>
+        <table id="monitor-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td class="username-element">{{user.username}}</td>
+                    <td><a href="{{url_for('page.edit_user', id=user.id)}}"><i class="fas fa-edit"></i></a></td>
+                    <td><a data-toggle="modal" data-target="#delete-user-{{user.id}}"><i class="fas fa-times"></i></a></td>
+                </tr>
+
+                <div class="modal" id="delete-user-{{user.id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> Delete User </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to <strong>delete</strong> user <strong>"{{user.username}}"</strong>? This action cannot be reversed.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('page.delete_user', id=user.id)}}">  <button type="button" class="btn btn-danger">Yes</button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

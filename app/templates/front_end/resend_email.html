@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Resend Confirmation Email {% endblock %}
+
+{% block scripts %}
+<style type="text/css">
+    #submit {
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 100px; margin-bottom: 250px">
+    <h1 align="center" id="main-title" style="margin-bottom: 25px"> Resend Confirmation Email </h1>
+    <div class="choose-pic-container" style="margin-bottom: 100px">
+        {{wtf.quick_form(form, button_map={'submit':'success'})}}
+    </div>
+</div>
+
+{% endblock %}

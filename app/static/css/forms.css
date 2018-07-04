@@ -1,0 +1,189 @@
+
+
+.form {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#submit {
+    padding: 5px 10px 5px 10px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 40%;
+    font-size: 16.5px;
+}
+
+#name, #username, #password, #retype_password, #email, #pic, #title, #description,
+#comment, #old_password, #new_password, #description_vie, #vie_name {
+    padding: 5px 10px 5px 10px;
+    border: black 1px solid;
+    border-radius: 5px;
+    width: 96%;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#description, #description_vie {
+    min-height: 100px;
+    margin-bottom: 0;
+}
+
+#comment {
+    min-height: 50px;
+}
+
+.checkbox {
+    font-family: Calibri, sans-serif;
+}
+
+#category_name, #role_name {
+    padding: 5px;
+    border-radius: 5px;
+    border: black 1px solid;
+    width: 50%;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#name, #vie_name {
+    width: 50%;
+}
+
+
+#mceu_23 {
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+
+    #submit {
+        margin-left: 38%;
+    }
+    
+}
+
+#shortcut-home {
+    position: fixed;
+    top: 20%;
+    left: 2%;
+}
+
+#comment-choices a, #authentication-notification a {
+    color: orangered;
+}
+
+#comment-choices a:hover, #authentication-notification a:hover {
+    text-decoration: underline;
+}
+
+.comment-container.hidden {
+    display: none;
+}
+
+.comment-container.unhidden {
+    display: block;
+}
+
+.form-group.has-error.required p {
+    color: orangered;
+}
+
+.help-block {
+    color: orangered;
+    margin-left: 5%;
+}
+
+.hidden {
+    display: none;
+}
+
+.unhidden {
+    display: block;
+}
+
+.login-form {
+    margin:auto;
+    max-width: 290px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.login-help {
+    font-size: 14px;
+    color: grey;
+    font-weight: normal;
+}
+
+#login-help-section {
+    margin-top: 20px;
+}
+
+#monitor-table {
+    border-spacing: 0;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    border: grey 1px solid;
+}
+
+#monitor-table tbody tr td, #monitor-table thead tr th  {
+    padding: 10px;
+}
+
+.posts-table {
+    border-spacing: 0;
+    margin: auto;
+}
+
+.guest-post-tag {
+    font-size: 12px;
+    background-color: gray;
+    color: white;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+#monitor-table th, #monitor-table td, .posts-table td {
+    padding: 5px 5px 0 0;
+    text-align: center;
+}
+
+#monitor-table .username-element, .posts-table .post-name-element {
+    text-align: left;
+}
+
+#profile-picture-frame {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#profile-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+}
+
+#choose_pic {
+    border-radius: 10px;
+    background-color: orange;
+}
+
+#submit-pic {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.choose-pic-container {
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#authentication-notification {
+    margin-top: 100px;
+    margin-bottom: 350px;
+}

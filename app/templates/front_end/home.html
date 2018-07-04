@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="main-container">
+        <div class="main-logo-home">
+            <a href="{{url_for('page.home')}}"><img id="main-pic" src={{home.pic}}></a>
+        </div>
+        <div id="description-section">
+            <h1 id="main-title"> <a href="{{url_for('page.home')}}"> {{home.title}} </a> </h1>
+            {% if session.get('language') == 'vie' %}
+            <p>{{home.vie_description}}</p>
+            {% else %}
+            <p>{{home.description}}</p>
+            {% endif %}
+            {% if current_user.is_administrator() %}
+                <p><a href="{{url_for('page.edit_home')}}"> <i class="fas fa-edit"></i> </a></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-container" style="margin-top: 20px">
+
+
+        <!--Tech Posts-->
+
+        <div class="content-column">
+            <h3> Tech </h3>
+            <table class="posts-table">
+            <tbody>
+                {% for post in tech_posts %}
+                <tr>
+                    <td>
+                    {% if post.uploader.role_is_user() %}
+                    <span class="guest-post-tag">Guest Post</span>
+                    {% endif %}
+                    </td>
+                    <td class="post-name-element"><a href="{{url_for('page.single_page', id=post.id)}}">
+                        {% if session.get('language') == 'vie' %}
+                            {{post.vie_name}}
+                        {% else %}
+                            {{post.name}}
+                        {% endif %}
+                        </a>
+                    </td>
+                    {% if current_user.is_administrator() or current_user.is_user(post.uploader) %}
+                    <td><a href="{{url_for('page.edit_post', id=post.id)}}"><i class="fas fa-edit"></i></a></td>
+                    <td><a data-toggle="modal" data-target="#delete-post-{{post.id}}"><i class="fas fa-times"></i></a></td>
+                    {% endif %}
+                </tr>
+
+                <div class="modal" id="delete-post-{{post.id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> Delete Post </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to <strong>delete</strong> post <strong>"{{post.name}}"</strong>? This action cannot be reversed.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('page.delete_post', id=post.id)}}">  <button type="button" class="btn btn-danger">Yes</button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+
+
+        <!--Random Posts-->
+
+        <div class="content-column" id="middle-column">
+            <h3> Random </h3>
+            <table class="posts-table">
+            <tbody>
+                {% for post in random_posts %}
+                <tr>
+                    <td>
+                    {% if post.uploader.role_is_user() %}
+                    <span class="guest-post-tag">Guest Post</span>
+                    {% endif %}
+                    </td>
+                    <td class="post-name-element"><a href="{{url_for('page.single_page', id=post.id)}}">
+                        {% if session.get('language') == 'vie' %}
+                            {{post.vie_name}}
+                        {% else %}
+                            {{post.name}}
+                        {% endif %}
+                        </a>
+                    </td>
+                    {% if current_user.is_administrator() or current_user.is_user(post.uploader) %}
+                    <td><a href="{{url_for('page.edit_post', id=post.id)}}"><i class="fas fa-edit"></i></a></td>
+                    <td><a data-toggle="modal" data-target="#delete-post-{{post.id}}"><i class="fas fa-times"></i></a></td>
+                    {% endif %}
+                </tr>
+
+                <div class="modal" id="delete-post-{{post.id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> Delete Post </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to <strong>delete</strong> post <strong>"{{post.name}}"</strong>? This action cannot be reversed.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('page.delete_post', id=post.id)}}">  <button type="button" class="btn btn-danger">Yes</button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+
+        <!--Share Posts-->
+
+        <div class="content-column" id="last-column">
+            <h3> Share </h3>
+            <table class="posts-table">
+            <tbody>
+                {% for post in share_posts %}
+                <tr>
+                    <td>
+                    {% if post.uploader.role_is_user() %}
+                    <span class="guest-post-tag">Guest Post</span>
+                    {% endif %}
+                    </td>
+                    <td class="post-name-element"><a href="{{url_for('page.single_page', id=post.id)}}">
+                        {% if session.get('language') == 'vie' %}
+                            {{post.vie_name}}
+                        {% else %}
+                            {{post.name}}
+                        {% endif %}
+                        </a>
+                    </td>
+                    {% if current_user.is_administrator() or current_user.is_user(post.uploader) %}
+                    <td><a href="{{url_for('page.edit_post', id=post.id)}}"><i class="fas fa-edit"></i></a></td>
+                    <td><a data-toggle="modal" data-target="#delete-post-{{post.id}}"><i class="fas fa-times"></i></a></td>
+                    {% endif %}
+                </tr>
+
+                <div class="modal" id="delete-post-{{post.id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> Delete Post </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to <strong>delete</strong> post <strong>"{{post.name}}"</strong>? This action cannot be reversed.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('page.delete_post', id=post.id)}}">  <button type="button" class="btn btn-danger">Yes</button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+{% endblock %}

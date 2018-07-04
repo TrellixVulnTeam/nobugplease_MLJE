@@ -1,0 +1,149 @@
+{% extends "base_with_shortcut.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block scripts %}
+<script type="text/javascript">
+  function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className=(item.className=='comment-container hidden')?'comment-container unhidden':'comment-container hidden';
+    }
+  }
+
+</script>
+{% endblock %}
+
+{% block body %}
+
+     <div class="container">
+         <div class="main-logo" style="margin-bottom: 50px">
+             <a href="{{url_for('page.home')}}"> <h2 style="margin-bottom: 10px">{{post.category_name}}</h2> </a>
+             <a href="{{url_for('page.home')}}"> <img id="main-pic" src={{url_for('static', filename='images/random.png')}}> </a>
+         </div>
+         <div class="align-center">
+             <h1 id="main-title"> <a href="{{url_for('page.single_page', id=post.id)}}">
+                 {% if session.get('language') == 'vie' %}
+                 {{post.vie_name}}
+                 {% else %}
+                 {{post.name}}
+                 {% endif %}
+             </a> </h1>
+             {% if current_user.is_administrator() or current_user.is_user(post.uploader) %}
+             <a href="{{url_for('page.edit_post', id=post.id)}}"> <i class="fas fa-edit"></i> </a> &nbsp;
+             <a data-toggle="modal" data-target="#deletepost"><i class="fas fa-times"></i></a>
+             {% endif %}
+         </div>
+
+          <p style="font-size: 16px; text-align: right; margin-bottom: 5%;">
+              {% if session.get('language') == 'vie' %}
+              Tải lên bởi {{post.uploader.username}} lúc {{post.uploaded_time}}.
+              {% else %}
+              Uploaded by {{post.uploader.username}} at {{post.uploaded_time}}.
+              {% endif %}
+          </p>
+         {% if session.get('language') == 'vie' %}
+         {{post.vie_content | safe}}
+         {% else %}
+         {{post.content | safe}}
+         {% endif %}
+     </div>
+
+    {% if current_user.is_authenticated %}
+    <div class="comment-container">
+            {{wtf.quick_form(comment_form, button_map={'submit':'success'})}}
+    </div>
+         {% else %}
+    <div class="comment-container" id="comment-choices">
+        {% if session.get('language') == 'vie' %}
+        <p>Hãy <a href="{{url_for('page.page_login')}}">Đăng nhập</a> để thêm bình luận hoặc <a href="javascript:unhide('anonymous-comment');">click vào đây</a> để thêm bình luận nặc danh.</p>
+        {% else %}
+        <p>Please <a href="{{url_for('page.page_login')}}">Log In</a> to add a comment or <a href="javascript:unhide('anonymous-comment');">click here</a> to add an anonymous comment.</p>
+        {% endif %}
+    </div>
+
+    <div class="comment-container hidden" id="anonymous-comment">
+            {{wtf.quick_form(anonymous_comment_form, button_map={'submit':'success'})}}
+    </div>
+         {% endif %}
+
+
+        {% for comment in comments %}
+    <div class="comment-container" id="comment-{{comment.id}}">
+        {% if current_user.is_administrator() or current_user.is_user(comment.uploader) %}
+        <ul id="comment-toolbar">
+            <li><a data-toggle="modal" data-target="#delete-comment-{{comment.id}}"><i class="fas fa-times"></i></a></li>
+            <!--<li><a href="#"><i class="fas fa-edit"></i></a></li>-->
+        </ul>
+        {% endif %}
+        <p><b>{{comment.uploader_name}}</b> &nbsp; <span style="font-size: 16px">{{comment.added_time}}</span></p>
+            <p>
+                <div class="comment-picture" style="width: 80px; height: 80px; float: left; margin-right: 20px">
+                    <img src="{{comment.uploader.pic}}" style="width:100%; height:100%; border-radius: 10%;">
+
+                </div>
+            <div style="float: left"> {{comment.content}} </div>
+            </p>
+        <div class="clr" style="margin:0"></div>
+    </div>
+
+
+    <div class="modal" id="delete-comment-{{comment.id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> {% if session.get('language') == 'vie' %} Xóa bình luận {% else %} Delete Comment {% endif %} </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  {% if session.get('language') == 'vie' %}
+                  <p>Bạn có chắc bạn muốn <strong>xóa</strong> bình luận này không? Hành động này là không thể đảo ngược.</p>
+                  {% else %}
+                  <p>Are you sure you want to <strong>delete</strong> this comment? This action cannot be reversed.</p>
+                  {% endif %}
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      {% if session.get('language') == 'vie' %}
+                      Không
+                      {% else %}
+                      Close
+                      {% endif %}
+                  </button>
+                  <a href="{{url_for('page.delete_comment', id=comment.id)}}">  <button type="button" class="btn btn-danger">
+                      {% if session.get('language') == 'vie' %}
+                      Có
+                      {% else %}
+                      Yes
+                      {% endif %}
+                  </button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+    <div class="modal" id="deletepost" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title"> <strong> Delete Post </strong> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Are you sure you want to <strong>delete</strong> post <strong>"{{post.name}}"</strong>? This action cannot be reversed.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('page.delete_post',id=post.id)}}">  <button type="button" class="btn btn-danger">Yes</button> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock %}

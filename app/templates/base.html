@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Hoang's Blog {%- endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/bootstrap-utilities.css')}}>
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/bootstrap-btn.css')}}>
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/forms.css')}}>
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/style.css')}}>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href={{url_for('static', filename='images/shortcut.png')}}>
+
+    {% block scripts %} {%- endblock scripts %}
+</head>
+
+<body>
+
+    <header id="main-header">
+        <div id="fb-icon">
+            <ul id="top-left-header">
+                <li><a href="{{url_for('page.home')}}"> Nobugplease | </a> </li>
+                <li><a href="https://www.facebook.com/100002207426125"> <i class="fab fa-facebook-square"></i> </a></li>
+                <li><a href="https://github.com/hoanghm"> <i class="fab fa-github-square"></i> </a></li>
+                <li><a href="mailto:hoanghm4@gmail.com"> <span id="email-icon"><i class="fas fa-envelope"></i></span></a></li>
+            </ul>
+        </div>
+        <div id="email-section">
+            <div class="dropdown">
+                {% if session.get('language') == 'vie' %}
+                <span class="language-icon"><img class="flag-icon" src="{{url_for('static', filename='images/vn.png')}}"></span>
+                <div class="dropdown-language">
+
+                    <a href="{{url_for('page.change_language', lang='eng')}}"><img class="flag-icon" src="{{url_for('static', filename='images/us.png')}}"></a>
+
+                </div>
+                {% else %}
+                <span class="language-icon"><img class="flag-icon" src="{{url_for('static', filename='images/us.png')}}"></span>
+                <div class="dropdown-language">
+
+                    <a href="{{url_for('page.change_language', lang='vie')}}"><img class="flag-icon" src="{{url_for('static', filename='images/vn.png')}}"></a>
+
+                </div>
+                {% endif %}
+            </div>
+            <a href="mailto:hoanghm4@gmail.com"> <span id="email-line">hoanghm4@gmail.com</span></a>
+            <div class="dropdown">
+                <span id="account-icon"><i class="fas fa-user"></i></span>
+                <div class="dropdown-content">
+
+                    {% if session.get('language') == 'vie' %}
+                        {% if current_user.is_authenticated %}
+                        <p style="color: lightblue"> Xin chào, {{current_user.username}}! </p>
+                        <p><a href="{{url_for('page.add_post')}}"> Thêm bài viết </a></p>
+                        <p><a href="{{url_for('page.page_logout')}}"> Đăng xuất </a></p>
+                        {% else %}
+                        <p><a href="{{url_for('page.page_login')}}">Đăng nhập</a></p>
+                        <p><a href="{{url_for('page.signup')}}">Đăng ký</a></p>
+                        {% endif %}
+
+                    {% else %}
+                        {% if current_user.is_authenticated %}
+                        <p style="color: lightblue"> Hello, {{current_user.username}}! </p>
+                        <p><a href="{{url_for('page.add_post')}}"> Add new Post </a></p>
+                        <p><a href="{{url_for('page.page_logout')}}"> Log Out </a></p>
+                        {% else %}
+                        <p><a href="{{url_for('page.page_login')}}">Log In</a></p>
+                        <p><a href="{{url_for('page.signup')}}">Sign Up</a></p>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+
+            {% if session.get('language') == 'vie' %}
+                {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <span id="settings-icon"><i class="fas fa-cog"></i></span>
+                    <div class="dropdown-content" id="settings-dropdown">
+
+                        <p style="color: lightblue"> Xin chào, {{current_user.username}}! </p>
+                        {% if current_user.is_administrator() %}
+                        <p><a href="{{url_for('page.monitor_users')}}"> Quản lý người dùng </a></p>
+                        <p><a href="{{url_for('page.posts_monitor')}}"> Quản lý bài đăng </a></p>
+                        {% endif %}
+                        <p><a href="{{url_for('page.change_profile_pic')}}"> Quản lý Profile </a></p>
+                        <p><a href="{{url_for('page.change_password')}}"> Đổi mật khẩu </a></p>
+                        <p><a href="{{url_for('page.change_email')}}"> Đổi email khôi phục </a></p>
+
+                    </div>
+                </div>
+                {% endif %}
+
+            {% else %}
+                {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <span id="settings-icon"><i class="fas fa-cog"></i></span>
+                    <div class="dropdown-content" id="settings-dropdown">
+
+                        <p style="color: lightblue"> Hello, {{current_user.username}}! </p>
+                        {% if current_user.is_administrator() %}
+                        <p><a href="{{url_for('page.monitor_users')}}"> Users Monitor </a></p>
+                        <p><a href="{{url_for('page.posts_monitor')}}"> Posts Monitor </a></p>
+                        {% endif %}
+                        <p><a href="{{url_for('page.change_profile_pic')}}"> Profile monitor </a></p>
+                        <p><a href="{{url_for('page.change_password')}}"> Change Password </a></p>
+                        <p><a href="{{url_for('page.change_email')}}"> Change Recovery Email </a></p>
+
+                    </div>
+                </div>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+    </header>
+
+        <ul id="login">
+            {% if session.get('language') == 'vie' %}
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{url_for('page.page_logout')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Đăng xuất"> </a></li>
+                    <li><a href="{{url_for('page.add_post')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Thêm bài viết"> </a></li>
+                    <li id="greeting-message"> Xin chào, {{current_user.username}}! </li>
+
+                {% else %}
+                <li><a href="{{url_for('page.signup')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Đăng ký"> </a></li>
+                <li id="login-button"><a href="{{url_for('page.page_login')}}"> Đăng nhập </a></li>
+                {% endif %}
+
+            {% else %}
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{url_for('page.page_logout')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Log Out"> </a></li>
+                    <li><a href="{{url_for('page.add_post')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Add a new Post"> </a></li>
+                    <li id="greeting-message"> Hello, {{current_user.username}}! </li>
+
+                {% else %}
+                <li><a href="{{url_for('page.signup')}}"> <input class="btn btn-default" style="font-family: Calibri, sans-serif; font-size: 16.5px" type="button" value="Sign Up"> </a></li>
+                <li id="login-button"><a href="{{url_for('page.page_login')}}"> Log in </a></li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    <div class="clr"></div>
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning" style="max-width: 690px; margin: auto;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    {% block adjustment %}  {%- endblock adjustment %}
+
+{% block body %}
+
+
+
+{%- endblock body %}
+
+<footer id="main-footer">
+        <p>Created by <a href="https://www.facebook.com/100002207426125">Hoang Ha</a></p>
+        <p id="copy-right">Copyright &copy; 2018</p>
+</footer>
+
+    <script type="text/javascript" src="{{url_for('static', filename='styles/tinymce/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='styles/tinymce/plugin/tinymce/tinymce.min.js')}}"> </script>
+    <script type="text/javascript" src="{{url_for('static', filename='styles/tinymce/plugin/tinymce/init-tinymce.js')}}"> </script>
+
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+
+</body>
+
+
+</html>
